@@ -2,14 +2,14 @@
 
 Writes a single deadpan one-star review of gravity to /output/entry.txt.
 
-The review: gravity never misses, which is exactly the complaint — drop a
-phone and it does its job flawlessly, face-down, screen first. One joke,
-told straight, with the sting in the last few words.
+The review: gravity never misses, which is exactly the complaint — it
+works perfectly every time, so a dropped phone always lands face-down
+on concrete. One joke, told straight, with the sting in the last few words.
 """
 
 from pathlib import Path
 
-ENTRY = "Gravity works fine until you drop your phone, then it works perfectly and your screen cracks. One star."
+ENTRY = "Gravity works perfectly every time, which is why my phone always lands face-down on concrete. One star."
 OUTPUT = Path("/output/entry.txt")
 
 
@@ -28,6 +28,8 @@ def validate(text: str) -> str:
         raise ValueError("entry must be exactly one line, no leading/trailing space")
     if "!" in text:
         raise ValueError("entry must hold the deadpan: no exclamation marks")
+    if not text.endswith("One star."):
+        raise ValueError("entry must close with the rating: 'One star.'")
     text.encode("utf-8")
     return text
 
